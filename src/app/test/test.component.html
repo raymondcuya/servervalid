@@ -1,0 +1,121 @@
+<div class="alert alert-danger" role="alert" *ngIf="errors.length > 0">
+  <ul>
+    <li *ngFor="let error of errors">
+      {{ error }}
+    </li>
+  </ul>
+</div>
+<div class="alert alert-success" role="alert" *ngIf="successfulSave">
+  Person saved successfully!
+</div>
+
+<form
+  novalidate
+  [formGroup]="personForm"
+  (ngSubmit)="onSubmit()"
+  class="form-horizontal"
+>
+  <div class="form-group">
+    <div class="col-sm-4">
+      <label class="control-label" for="title">Title</label><span>*</span>
+      <select id="title" class="form-control" formControlName="title">
+        <option></option>
+        <option>Ms</option>
+        <option>Mr</option>
+        <option>Mrs</option>
+        <option>Miss</option>
+      </select>
+    </div>
+  </div>
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="
+      !personForm.controls.title.valid && personForm.controls.title.touched
+    "
+  >
+    You must enter a title
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label class="control-label" for="firstName">First name</label
+      ><span>*</span>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        formControlName="firstName"
+      />
+    </div>
+  </div>
+
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="
+      !personForm.controls.firstName.valid &&
+      personForm.controls.firstName.touched
+    "
+  >
+    You must enter a first name
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label class="control-label" for="surname">Surname</label><span>*</span>
+      <input
+        type="text"
+        class="form-control"
+        id="surname"
+        formControlName="surname"
+      />
+    </div>
+  </div>
+
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="
+      !personForm.controls.surname.valid && personForm.controls.surname.touched
+    "
+  >
+    You must enter a sur name
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label class="control-label" for="emailAddress">Email address</label
+      ><span>*</span>
+      <input
+        type="email"
+        class="form-control"
+        id="emailAddress"
+        formControlName="emailAddress"
+      />
+    </div>
+  </div>
+
+  <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="
+      !personForm.controls.emailAddress.valid &&
+      personForm.controls.emailAddress.touched
+    "
+  >
+    You must enter a emailAddress
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-3">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="personForm.invalid"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
